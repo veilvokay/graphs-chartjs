@@ -25,9 +25,12 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     const revenueCtx = document.getElementById('graph-revenue').getContext('2d');
-    const revenueGradient = revenueCtx.createLinearGradient(800, 0, 800, 400);
-    revenueGradient.addColorStop(0, 'rgba(165, 55, 253, 0.8)');
-    revenueGradient.addColorStop(1, 'rgba(165, 55, 253, 0.1)');
+    const revenueGradientNTIF = revenueCtx.createLinearGradient(800, 0, 800, 400);
+    revenueGradientNTIF.addColorStop(0, 'rgba(165, 55, 253, 0.8)');
+    revenueGradientNTIF.addColorStop(1, 'rgba(165, 55, 253, 0.1)');
+    const revenueGradientTIF = revenueCtx.createLinearGradient(800, 0, 800, 400);
+    revenueGradientTIF.addColorStop(0, 'rgba(254, 241, 96, 0.8)');
+    revenueGradientTIF.addColorStop(1, 'rgba(254, 241, 96, 0.1)');
     const revenueChart = new Chart(revenueCtx, {
 
         type: 'line',
@@ -37,9 +40,13 @@ window.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'Non TIF',
                 borderColor: 'purple',
-                backgroundColor: revenueGradient,
-                data: [11, 10, 18, 11, 8, 21, 12, 9],
-                yAxisID: 'test'
+                backgroundColor: revenueGradientNTIF,
+                data: [11, 10, 18, 11, 8, 21, 12, 9]
+            }, {
+                label: 'TIF',
+                borderColor: 'yellow',
+                backgroundColor:revenueGradientTIF,
+                data: [30, 33, 28, 30, 22, 29, 26, 31]
             }]
         },
 
@@ -52,10 +59,17 @@ window.addEventListener('DOMContentLoaded', () => {
             },
             scales: {
                 yAxes: [{
-                    id: 'test',
+                    id: 'revenueNTIF',
                     type: 'linear',
                     ticks: {
-                        min: -10,
+                        min: 0,
+                        max: 50
+                    }
+                }, {
+                    id: 'revenueTIF',
+                    type: 'linear',
+                    ticks: {
+                        min: 0,
                         max: 50
                     }
                 }]
